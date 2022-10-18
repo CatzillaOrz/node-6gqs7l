@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width')
+    title #{docTitle}
+
+    link(rel='stylesheet' href='/css/main.css' type='text/css' media='all')
+    link(rel='stylesheet' href='/css/product.css' type='text/css' media='all')
+  body
+    header.main-header
+      nav.main-header__nav
+        ul.main-header__item-list
+          li.main-header__item
+            a.active(href='/') Shop
+          li.main-header__item
+            a(href='/admin/add-product') Add Product 
+    main
+        if prods.length > 0
+            .grid
+                each product in prods
+                    article.card.produt-item
+                        header.product-header
+                            h1.product-title #{product.title}
+                        div.card__image
+                            img(src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png")
+                        div.card__content
+                            h2/product__price $19.99
+                            p.product_description A very Interesting book about so many even more...
+                        .card__action
+                            button.btn Add to Cart
+        else
+            h1 No Products...
