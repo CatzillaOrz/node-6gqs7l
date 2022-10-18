@@ -4,12 +4,12 @@ const express = require("express");
 const bodyParser = require("express");
 const rootDir = require("./util/path");
 const app = express();
-const adminRouter = require("./routes/admin");
+const adminData = require("./routes/admin");
 const shopRouter = require("./routes/shop");
 
 app.use(express.static(path.join(rootDir, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/admin", adminRouter);
+app.use("/admin", adminData.routes);
 app.use(shopRouter);
 
 app.use((req, res, next) => {
