@@ -4,23 +4,12 @@ const rootDir = require("./util/path");
 
 const express = require("express");
 const bodyParser = require("express");
-const { engine } = require("express-handlebars");
 
 const adminData = require("./routes/admin");
 const shopRouter = require("./routes/shop");
 
 const app = express();
-
-app.engine(
-  "hbs",
-  engine({
-    extname: "hbs",
-    layoutsDir: "views/layouts/",
-    defaultLayout: "main",
-  })
-);
-//app.set("view engine", "pug");
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 app.set("views", "views");
 
 app.use(express.static(path.join(rootDir, "public")));
