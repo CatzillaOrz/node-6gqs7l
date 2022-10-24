@@ -51,6 +51,24 @@ exports.getOrders = (req, res, next) => {
     });
 };
 
+exports.getDetail = (req, res, next) => {
+    const pId = req.params.id;
+    Product.findById(pId, product => {
+        console.log(product);
+    })
+    res.render("shop/checkout", {
+        path: "/checkout",
+        pageTitle: "Checkout",
+    });
+};
+
+exports.deleteProduct = (req, res, next) => {
+    res.render("shop/checkout", {
+        path: "/checkout",
+        pageTitle: "Checkout",
+    });
+};
+
 exports.getCheckout = (req, res, next) => {
     res.render("shop/checkout", {
         path: "/checkout",
