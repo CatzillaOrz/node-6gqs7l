@@ -37,3 +37,28 @@ main {
 .main-header__item a.active {
   color: #6200ff;
 }
+
+.grid{
+    display: flex;
+}
+
+.card{
+    flex-direction: column;
+    display: flex;
+    min-width: 300px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 8px 6px 8px #eee;
+    border-radius: 10px;
+
+}
+.cart__image{
+    min-height: 240px;
+    
+}
+.cart__image img{
+    width: 100%;
+    height: 240px;
+} 
+
+

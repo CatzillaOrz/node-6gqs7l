@@ -2,22 +2,22 @@
   <nav class="main-header__nav">
     <ul class="main-header__item-list">
       <li class="main-header__item">
-         <a href="/" class="<%= path === 'shop' ? 'active': ''%>">Shop</a>
+         <a href="/" class="<%= path === '/' ? 'active': ''%>">Shop</a>
       </li>
       <li class="main-header__item">
-         <a href="/products" class="<%= path === 'products' ? 'active': ''%>">Products</a>
+         <a href="/products" class="<%= path === '/products' ? 'active': ''%>">Products</a>
       </li>
       <li class="main-header__item">
-         <a href="/cart" class="<%= path === 'cart' ? 'active': ''%>">Cart</a>
+         <a href="/cart" class="<%= path === '/shop/cart' ? 'active': ''%>">Cart</a>
       </li>
 
 
-      <li class="main-header__item" class="<%= path === 'admin/add-product' ? 'active': ''%>">
-        <a href="/admin/add-product">Add Product </a>
+      <li class="main-header__item" >
+        <a href="/admin/add-product" class="<%= path === '/admin/add-product' ? 'active': ''%>">Add Product </a>
       </li>
 
-      <li class="main-header__item" class="<%= path === 'admin/add-product' ? 'active': ''%>">
-        <a href="/admin/products">Admin Products </a>
+      <li class="main-header__item" >
+        <a href="/admin/products" class="<%= path === 'admin/products' ? 'active': ''%>">Admin Products </a>
       </li>
 
     </ul>
