@@ -78,3 +78,28 @@ button:active {
   background-color: #3e00a1;
   color: white;
 }
+
+.cart__action, form{
+    display: inline-block;
+}
+
+.btn{
+     margin: 0em;
+    padding: 1px 6px;
+    border-width: 2px;
+    text-decoration: none;
+    border: 1px solid #eee;
+    color: #3e00a1;
+    background: white;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #3e00a1;
+  color: white;
+}
