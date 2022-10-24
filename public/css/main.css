@@ -51,6 +51,7 @@ main {
     box-shadow: 8px 6px 8px #eee;
     border-radius: 10px;
 
+
 }
 .cart__image{
     min-height: 240px;
@@ -62,3 +63,18 @@ main {
 } 
 
 
+.cart__action, button {
+  font: inherit;
+  margin: 5px
+  border: 1px solid #3e00a1;
+  color: #3e00a1;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.cart__action, button:hover,
+button:active {
+  background-color: #3e00a1;
+  color: white;
+}

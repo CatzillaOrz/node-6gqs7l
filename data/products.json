@@ -1,8 +1,1 @@
-[
-    {
-        "title": "HarryPotter1",
-        "imageUrl": "",
-        "description": "No moer..",
-        "price": "1.22"
-    }
-]
+[{"title":"HarryPotter1","imageUrl":"","description":"No moer..","price":"1.22"},{"title":"Harry2","imageUrl":"/image/book.jpeg","description":"This is book 2...","price":"1.23"}]

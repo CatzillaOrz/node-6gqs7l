@@ -1,10 +1,37 @@
-
 <%- include('../includes/head.ejs') %>
-
-   <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
   </head>
   <body>
-  <h1>products works!</h1>
             <%- include('../includes/navigation.ejs') %>
-            <%- include('../includes/end.ejs') %>
+
+   <main>
+
+      <% if(prods.length > 0) { %>
+
+          <div class="grid">
+            <% for(let product of prods){ %>
+                <article class="card product-item">
+                    <header class="card__header">
+                      <h1 class="product__title">📖<%= product.title %></h1>
+                    </header>
+                    <div class="cart__image">
+                        <img src="<%= product.imageUrl || '/image/book.jpeg'  %>">  
+                    </div>
+                    <div class="card_content">
+                      <h2 class="product__price">$ <%= product.price %> </h2>
+                      <p class="product__description"> <%= product.description %> </p>
+                    </div>
+                    <div class="card__action">
+                        <button type="submit">Edit</button>
+                        <form action="/admin/delete-product" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                 </article>
+             <% } %>
+          </div>
+      <% }else{ %>
+          <p>no item!</p>
+     <% } %>
+</main>
+   <%- include("../includes/end.ejs") %>
 
