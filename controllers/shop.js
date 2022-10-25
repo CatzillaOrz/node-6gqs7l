@@ -54,13 +54,26 @@ exports.getOrders = (req, res, next) => {
 exports.getDetail = (req, res, next) => {
     const pId = req.params.id;
     Product.findById(pId, product => {
-        console.log(product);
+        res.render("shop/product-detail", {
+            product: product,
+            path: "/products",
+            pageTitle: "Detail",
+        });
     })
-    res.render("shop/checkout", {
-        path: "/checkout",
-        pageTitle: "Checkout",
-    });
+
 };
+
+exports.postCart = (req, res, next) => {
+    const pId = req.body.id;
+    Product.findById(pId, product => {
+        res.render("shop/cart", {
+            product: product,
+            path: "/cart",
+            pageTitle: "Cart",
+        });
+    })
+
+}
 
 exports.deleteProduct = (req, res, next) => {
     res.render("shop/checkout", {

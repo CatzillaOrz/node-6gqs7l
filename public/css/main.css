@@ -103,3 +103,15 @@ button:active {
   background-color: #3e00a1;
   color: white;
 }
+
+.center{
+    text-align: center;
+}
+.center img{
+    max-width: 300px;
+}
+
+.center h1{
+    border-bottom: 1px solid ;
+}
+
