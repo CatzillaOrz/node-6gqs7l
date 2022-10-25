@@ -13,10 +13,7 @@
               <p class="product__description"> <%= product.description %> </p>
         </div>
         <div class="card__action">
-            <form action="/cart" method="POST">
-                <button class="btn">Add to Cart</button>
-                <input name="id" value="<%= product.id %>" style="display: none;" />
-            </form>
+            <%- include("../includes/add-to-cart.ejs") %>
         </div>
 
     </center>
