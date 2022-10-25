@@ -73,13 +73,13 @@ main {
   cursor: pointer;
 }
 
-.cart__action, button:hover,
+.cart__action button:hover,
 button:active {
   background-color: #3e00a1;
   color: white;
 }
 
-.cart__action, form{
+.card form{
     display: inline-block;
 }
 

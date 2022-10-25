@@ -20,4 +20,14 @@ app.use(shopRouter);
 
 app.use(errorController.get404);
 
+function findNumber(arr, k) {
+    // Write your code here
+    const index = arr.findIndex(item => item === k)
+    return index !== -1 ? 'YES' : "NO"
+}
+
+const arr1 = [1, 2, 5, 9];
+
+const result = findNumber(arr1, 5)
+console.log(result);
 app.listen(8080);

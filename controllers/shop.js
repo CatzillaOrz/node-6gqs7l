@@ -1,8 +1,8 @@
 const Product = require("../models/product");
+const Cart = require("../models/cart");
 
 exports.getAddProduct = (req, res, next) => {
-    //res.sendFile(path.join(rootDir, "views", "add-product.html"));
-    res.render("admin/add-product", {
+    res.render("admin/edit-product", {
         path: "admin",
         pageTitle: "Add-Product",
         activeProduct: true,
@@ -66,6 +66,7 @@ exports.getDetail = (req, res, next) => {
 exports.postCart = (req, res, next) => {
     const pId = req.body.id;
     Product.findById(pId, product => {
+        Cart.addProduct(pId, product.price);
         res.render("shop/cart", {
             product: product,
             path: "/cart",
