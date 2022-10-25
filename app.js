@@ -20,14 +20,14 @@ app.use(shopRouter);
 
 app.use(errorController.get404);
 
-function findNumber(arr, k) {
+function oddNumbers(l, r) {
     // Write your code here
-    const index = arr.findIndex(item => item === k)
-    return index !== -1 ? 'YES' : "NO"
+    const arr = []
+    for (let i = l; i <= r; i++) {
+        if (i % 2 !== 0) arr.push(i)
+    }
+    return arr
 }
-
-const arr1 = [1, 2, 5, 9];
-
-const result = findNumber(arr1, 5)
-console.log(result);
+const arr = oddNumbers(3, 9)
+console.log(arr);
 app.listen(8080);
