@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 
 exports.getEditProduct = (req, res, next) => {
-  const editMode = true;
+  const editMode = req.query.edit;
   if (!editMode) {
     return res.redirect("/");
   }
@@ -27,6 +27,20 @@ exports.getAddProduct = (req, res, next) => {
   });
 };
 
+exports.postEditProduct = (req, res, next) => {
+  const prod = req.body;
+  console.log({ ...prod });
+  const updatedProduct = new Product(
+    prod.id,
+    prod.title,
+    prod.imageUrl,
+    prod.description,
+    prod.price
+  );
+  updatedProduct.save();
+  res.redirect("/");
+};
+
 exports.getProduct = (req, res, next) => {
   Product.fetchAll((products) => {
     res.render("admin/products", {
@@ -41,7 +55,7 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const description = req.body.description;
   const price = req.body.price;
-  const product = new Product(title, imageUrl, description, price);
+  const product = new Product(null, title, imageUrl, description, price);
   product.save();
   res.redirect("/");
 };
