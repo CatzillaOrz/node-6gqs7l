@@ -83,11 +83,7 @@ exports.postCart = (req, res, next) => {
   const pId = req.body.id;
   Product.findById(pId, (product) => {
     Cart.addProduct(pId, product.price);
-    res.render("shop/cart", {
-      product: product,
-      path: "/cart",
-      pageTitle: "Cart",
-    });
+    res.redirect("/cart");
   });
 };
 
