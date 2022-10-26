@@ -1,8 +1,37 @@
 <%- include("../includes/head.ejs") %>
-
-   <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
   </head>
   <body>
-            <%- include('../includes/navigation.ejs') %>
-            <%- include('../includes/end.ejs') %>
+
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if(products.length>0){ %>
+
+            
+          <div class="grid">
+            <% for(let cart of products){ const  product = cart.productData %>
+                <article class="card product-item">
+                    <header class="card__header">
+                      <h1 class="product__title">📖<%= product.title %> * <%= cart.qty%></h1>
+                    </header>
+                    <div class="cart__image">
+                        <img src="<%= product.imageUrl || '/image/book.jpeg'  %>">  
+                    </div>
+                    <div class="card_content">
+                      <h2 class="product__price">$ <%= product.price * cart.qty %> </h2>
+                      <p class="product__description"> <%= product.description %> </p>
+                    </div>
+                 </article>
+             <% } %>
+          </div>
+ 
+
+        <%}else{%>
+            <h1> No results cart...</h1>
+        <%}%>
+
+
+    </main>
+
+    <%- include('../includes/end.ejs') %>
 
