@@ -23,7 +23,7 @@ exports.getAddProduct = (req, res, next) => {
   res.render("admin/edit-product", {
     path: "/admin/add-product",
     pageTitle: "AddProducts",
-    editing: true,
+    editing: false,
   });
 };
 
@@ -39,6 +39,15 @@ exports.postEditProduct = (req, res, next) => {
   );
   updatedProduct.save();
   res.redirect("/");
+};
+
+exports.deleteProduct = (req, res, next) => {
+  const pId = req.body.id;
+  console.log(pId);
+  Product.deleteById(pId, (product) => {
+    console.log(product);
+    res.redirect("/admin/products");
+  });
 };
 
 exports.getProduct = (req, res, next) => {
