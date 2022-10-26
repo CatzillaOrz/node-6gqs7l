@@ -1,16 +1,17 @@
 [
-    {
-        "id": "0.213",
-        "title": "HarryPotter1",
-        "imageUrl": "",
-        "description": "No moer..",
-        "price": 1.22
-    },
-    {
-        "id": "0.219",
-        "title": "Harry2",
-        "imageUrl": "/image/book.jpeg",
-        "description": "This is book 2...",
-        "price": 1.23
-    }
+  {
+    "id": "0.213",
+    "title": "HarryPotter1",
+    "imageUrl": "",
+    "description": "No moer..",
+    "price": 1.22
+  },
+  {
+    "id": "0.219",
+    "title": "Harry2",
+    "imageUrl": "/image/book.jpeg",
+    "description": "This is book 2...",
+    "price": 1.23
+  }
 ]
+

@@ -20,14 +20,4 @@ app.use(shopRouter);
 
 app.use(errorController.get404);
 
-function oddNumbers(l, r) {
-    // Write your code here
-    const arr = []
-    for (let i = l; i <= r; i++) {
-        if (i % 2 !== 0) arr.push(i)
-    }
-    return arr
-}
-const arr = oddNumbers(3, 9)
-console.log(arr);
 app.listen(8080);
