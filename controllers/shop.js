@@ -87,6 +87,14 @@ exports.postCart = (req, res, next) => {
   });
 };
 
+exports.deleteCartById = (req, res, next) => {
+  const pId = req.body.id;
+  Product.findById(pId, (product) => {
+    Cart.deleteProductById(pId, product.price);
+    res.redirect("/cart");
+  });
+};
+
 exports.deleteProduct = (req, res, next) => {
   res.render("shop/checkout", {
     path: "/checkout",

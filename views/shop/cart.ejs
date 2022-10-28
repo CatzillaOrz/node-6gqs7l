@@ -21,6 +21,10 @@
                       <h2 class="product__price">$ <%= product.price * cart.qty %> </h2>
                       <p class="product__description"> <%= product.description %> </p>
                     </div>
+                    <form action="/cart-delete-item" method="POST">
+                        <input type="hidden" name="id" value="<%= product.id %>" />
+                        <button type="submit">Delete</button>
+                    </form>
                  </article>
              <% } %>
           </div>
