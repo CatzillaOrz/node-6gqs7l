@@ -1,7 +1,6 @@
 // run `node index.js` in the terminal
 const path = require("path");
 const rootDir = require("./util/path");
-const db = require("./util/database");
 const express = require("express");
 const bodyParser = require("express");
 
@@ -19,13 +18,5 @@ app.use("/admin", adminRoutes.routes);
 app.use(shopRouter);
 
 app.use(errorController.get404);
-
-db.execute("SELECT * FROM products")
-  .then((result) => {
-    console.log(result[0], result[1]);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 app.listen(8080);
