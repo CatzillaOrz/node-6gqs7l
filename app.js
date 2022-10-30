@@ -4,6 +4,8 @@ const rootDir = require("./util/path");
 const express = require("express");
 const bodyParser = require("express");
 
+const sequelize = require("./util/database");
+
 const adminRoutes = require("./routes/admin");
 const shopRouter = require("./routes/shop");
 
@@ -19,4 +21,11 @@ app.use(shopRouter);
 
 app.use(errorController.get404);
 
-app.listen(8080);
+sequelize
+  .sync()
+  .then((results) => {
+    app.listen(8080);
+  })
+  .catch((err) => {
+    console.log(err);
+  });

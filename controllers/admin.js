@@ -10,7 +10,7 @@ exports.getEditProduct = (req, res, next) => {
     if (!product) {
       return res.redirect("/");
     }
-    res.render("admin/edit-product", {
+  res.render("admin/edit-product", {
       path: "/admin/edit-product",
       pageTitle: "Edit-Product",
       editing: editMode,
@@ -60,15 +60,21 @@ exports.getProduct = (req, res, next) => {
   });
 };
 exports.postAddProduct = (req, res, next) => {
+  console.log("req body:");
+  console.log(req.body);
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
   const description = req.body.description;
   const price = req.body.price;
-  const product = new Product(null, title, imageUrl, description, price);
-  product
-    .save()
-    .then(() => {
+  Product.create({
+    title: title,
+    imageUrl: imageUrl,
+    description: description,
+    price: price,
+  })
+    .then((_) => {
+      console.log("[mysql]:creaet product succeed!");
       res.redirect("/");
     })
-    .catch((err) => console.log(err));
+    .catch((e) => console.log(e));
 };
