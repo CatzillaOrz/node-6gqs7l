@@ -45,26 +45,21 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-    Cart.getCart((cart) => {
-        Product.fetchAll((products) => {
-            const cartProduct = [];
-            for (let product of products) {
-                const cartProductData = cart.products.find((prod) => prod.id === product.id);
-                if (cartProductData) {
-                    cartProduct.push({
-                        productData: product,
-                        qty: cartProductData.qty,
+    req.user
+        .getCart()
+        .then((cart) => {
+            cart.getProducts()
+                .then((products) => {
+                    res.render('shop/cart', {
+                        pageTitle: 'Shop Cart',
+                        path: '/cart',
+                        products: products,
+                        cart: cart,
                     });
-                }
-            }
-            res.render('shop/cart', {
-                pageTitle: 'Shop Cart',
-                path: '/cart',
-                products: cartProduct,
-                cart: cart,
-            });
-        });
-    });
+                })
+                .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
 };
 
 exports.getOrders = (req, res, next) => {
