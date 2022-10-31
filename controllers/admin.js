@@ -6,7 +6,7 @@ exports.getEditProduct = (req, res, next) => {
         return res.redirect('/');
     }
     const pId = req.params.id;
-    Product.findByPk(pId).then((product) => {
+    req.user.getProducts({ where: { id: pId } }).then(([product]) => {
         if (!product) {
             return res.redirect('/');
         }
