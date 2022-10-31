@@ -38,7 +38,7 @@ exports.postEditProduct = (req, res, next) => {
             return product.save();
         })
         .then((_) => {
-            console.log('update product success');
+            console.log('UPDATE PRODUCT SUCCESS');
             res.redirect('/');
         })
         .catch((err) => {
@@ -49,10 +49,16 @@ exports.postEditProduct = (req, res, next) => {
 exports.deleteProduct = (req, res, next) => {
     const pId = req.body.id;
     console.log(pId);
-    Product.deleteById(pId, (product) => {
-        console.log(product);
-        res.redirect('/admin/products');
-    });
+    Product.findByPk(pId)
+        .then((product) => {
+            return product.destroy();
+        })
+        .then((_) => {
+            res.redirect('/admin/products');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 exports.getProduct = (req, res, next) => {
