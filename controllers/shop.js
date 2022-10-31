@@ -48,16 +48,14 @@ exports.getCart = (req, res, next) => {
     req.user
         .getCart()
         .then((cart) => {
-            cart.getProducts()
-                .then((products) => {
-                    res.render('shop/cart', {
-                        pageTitle: 'Shop Cart',
-                        path: '/cart',
-                        products: products,
-                        cart: cart,
-                    });
-                })
-                .catch((err) => console.log(err));
+            return cart.getProducts();
+        })
+        .then((products) => {
+            res.render('shop/cart', {
+                pageTitle: 'Shop Cart',
+                path: '/cart',
+                products: products,
+            });
         })
         .catch((err) => console.log(err));
 };
@@ -96,10 +94,28 @@ exports.getDetail = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
     const pId = req.body.id;
-    Product.findById(pId, (product) => {
-        Cart.addProduct(pId, product.price);
-        res.redirect('/cart');
-    });
+    let fetchedCart;
+    req.user
+        .getCart()
+        .then((cart) => {
+            fetchedCart = cart;
+            return cart.getProducts({ where: { id: pId } });
+        })
+        .then(([prod]) => {
+            // if (!prod) return;
+            let newQuantity = 1;
+            return Product.findByPk(pId)
+                .then((product) => {
+                    return fetchedCart.addProduct(product, {
+                        through: {
+                            qty: newQuantity,
+                        },
+                    });
+                })
+                .catch((err) => console.log(err));
+        })
+        .then((_) => res.redirect('/cart'))
+        .catch((err) => console.log(err));
 };
 
 exports.deleteCartById = (req, res, next) => {
