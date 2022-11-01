@@ -25,17 +25,23 @@
                         <input type="hidden" name="id" value="<%= product.id %>" />
                         <button type="submit">Delete</button>
                     </form>
-                 </article>
+                  </article>
+
              <% } %>
           </div>
-
+    </main>
+     <br>
+             <div class="center">
+                 <form action="/create-order" method="POST">
+                      <button type="submit" class="btn"> Order</button>
+                </form>
+             </div>
 
         <%}else{%>
             <h1> No results cart...</h1>
         <%}%>
 
 
-    </main>
 
     <%- include('../includes/end.ejs') %>
 
