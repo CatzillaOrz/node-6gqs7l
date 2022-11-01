@@ -123,10 +123,18 @@ exports.postCart = (req, res, next) => {
 
 exports.deleteCartById = (req, res, next) => {
     const pId = req.body.id;
-    Product.findById(pId, (product) => {
-        Cart.deleteProductById(pId, product.price);
-        res.redirect('/cart');
-    });
+    req.user
+        .getCart()
+        .then((cart) => {
+            return cart.getProducts({ where: { id: pId } });
+        })
+        .then(([product_index0]) => {
+            return product_index0.cartItem.destroy();
+        })
+        .then((_) => {
+            res.redirect('/cart');
+        })
+        .catch((err) => console.log(err));
 };
 
 exports.deleteProduct = (req, res, next) => {
