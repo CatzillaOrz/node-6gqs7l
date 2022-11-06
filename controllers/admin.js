@@ -62,7 +62,7 @@ exports.deleteProduct = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  Product.findAll().then((products) => {
+  Product.fetchAll().then((products) => {
     res.render("admin/products", {
       prods: products,
       path: "/admin/products",
