@@ -6,7 +6,7 @@ const bodyParser = require("express");
 const { mongoConnect } = require("./util/database");
 
 const adminRoutes = require("./routes/admin");
-//const shopRouter = require("./routes/shop");
+const shopRouter = require("./routes/shop");
 
 const errorController = require("./controllers/error");
 
@@ -17,7 +17,7 @@ app.use(express.static(path.join(rootDir, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/admin", adminRoutes.routes);
-//app.use(shopRouter);
+app.use(shopRouter);
 
 app.use(errorController.get404);
 

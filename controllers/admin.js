@@ -6,7 +6,7 @@ exports.getEditProduct = (req, res, next) => {
     return res.redirect("/");
   }
   const pId = req.params.id;
-  req.user.getProducts({ where: { id: pId } }).then(([product]) => {
+  Product.findById(pId).then((product) => {
     if (!product) {
       return res.redirect("/");
     }
@@ -29,14 +29,14 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postEditProduct = (req, res, next) => {
   const prod = req.body;
-  Product.findByPk(prod.id)
-    .then((product) => {
-      product.title = prod.title;
-      product.price = prod.price;
-      product.imageUrl = prod.imageUrl;
-      product.description = prod.description;
-      return product.save();
-    })
+  const title = prod.title;
+  const price = prod.price;
+  const imageUrl = prod.imageUrl;
+  const description = prod.description;
+  const product = new Product(title, price, description, imageUrl, req.body.id);
+
+  product
+    .save()
     .then((_) => {
       console.log("UPDATE PRODUCT SUCCESS");
       res.redirect("/");
