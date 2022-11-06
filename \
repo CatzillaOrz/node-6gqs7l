@@ -3,14 +3,13 @@ const getDb = require("../util/database").getDb;
 
 class User {
   constructor(username, email) {
-    this.name = username;
+    this.username = username;
     this.email = email;
   }
 
   save() {
     const db = getDb();
-    return db
-      .collection("users")
+    db.collection("users")
       .insertOne(this)
       .then((_) => {
         console.log("Add User SUCCESS");
@@ -22,7 +21,7 @@ class User {
     const db = getDb();
     return db
       .collection("users")
-      .findOne({ _id: new mongodb.ObjectId(id) })
+      .findOnd({ _id: new mongodb.ObjectId(id) })
       .then((user) => {
         return user;
       })
