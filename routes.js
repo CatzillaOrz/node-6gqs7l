@@ -15,13 +15,13 @@ const requestHandler = (req, res) => {
             console.log(chunk)
             body.push(chunk)
         })
-        return req.on('end', () => {
+        req.on('end', () => {
             const parseBody = Buffer.concat(body).toString();
             const message = parseBody.split('=')[1];
-            fs.writeFile('message.txt', message, (err) => {
+            fs.writeFileSync('message.txt', message, (err) => {
                 res.statusCode = 302;
                 res.setHeader('Location', '/')
-                res.end()
+                return res.end()
             });
         })
     }
