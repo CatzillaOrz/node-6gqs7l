@@ -7,14 +7,10 @@
   margin: 1rem 0;
 }
 .form-control label,
-.form-control input,
-.form-control textarea {
+.form-control input {
   display: block;
-  width: 100%;
-  border-radius: 0.25rem;
 }
-.form-control input,
-.form-control textarea {
+.form-control input {
   border: 1px solid #dbc441;
   font: inherit;
   border-radius: 2px;
