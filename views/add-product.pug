@@ -1,0 +1,11 @@
+extends layouts/main-layouts.pug
+block style
+    link(rel='stylesheet' href='/css/product.css' type='text/css' media='all')
+block content
+    main
+        form.product-form(action='/admin/add-product' method='POST')
+            .form-control
+                  label(for='title') Title
+                  input#title(type='text' name='title')
+            button(type='submit') Add Prodect
+
