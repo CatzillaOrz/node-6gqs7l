@@ -12,11 +12,16 @@
             "type": "node"
         },
         {
+            "name": "Attach",
             "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": ["<node_internals>/**"],
-            "program": "${workspaceFolder}/app.js"
+            "request": "attach",
+            "port": 9229,
+            "address": "localhost",
+            "restart": true,
+            "sourceMaps": false,
+            "outFiles": [],
+            "localRoot": "${workspaceRoot}",
+            "remoteRoot": "http://localhost:8080"
         }
     ]
 }

@@ -12,17 +12,17 @@
             <% for(let product of products){  %>
                 <article class="card product-item">
                     <header class="card__header">
-                      <h1 class="product__title">📖<%= product.title %> * <%= product.cartItem.qty %></h1>
+                      <h1 class="product__title">📖<%= product.title %> * <%= product.quantity %></h1>
                     </header>
                     <div class="cart__image">
                         <img src="<%= product.imageUrl || '/image/book.jpeg'  %>">
                     </div>
                     <div class="card_content">
-                      <h2 class="product__price">$ <%= product.price * product.cartItem.qty %> </h2>
+                      <h2 class="product__price">$ <%= product.price * product.quantity %> </h2>
                       <p class="product__description"> <%= product.description %> </p>
                     </div>
                     <form action="/cart-delete-item" method="POST">
-                        <input type="hidden" name="id" value="<%= product.id %>" />
+                        <input type="hidden" name="id" value="<%= product._id %>" />
                         <button type="submit">Delete</button>
                     </form>
                   </article>
