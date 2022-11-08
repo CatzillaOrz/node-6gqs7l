@@ -4,5 +4,27 @@
   </head>
   <body>
             <%- include('../includes/navigation.ejs') %>
+<main>
+        <% if(orders.length>0){ %>
+
+
+          <div class="grid">
+            <% orders.forEach( order => { order.products.forEach( product => {%>
+                <article class="card product-item">
+                    <header class="card__header">
+                      <h1 class="product__title">📖<%= product.title %> * <%= product.orderItem.qty %></h1>
+                    </header>
+                    <div class="cart__image">
+                        <img src="<%= product.imageUrl || '/image/book.jpeg'  %>">
+                    </div>
+                    <div class="card_content">
+                      <h2 class="product__price">$ <%= product.price * product.orderItem.qty %> </h2>
+                      <p class="product__description"> <%= product.description %> </p>
+                    </div>
+                 </article>
+
+             <% }) })} %>
+          </div>
+ </main>
             <%- include('../includes/end.ejs') %>
 

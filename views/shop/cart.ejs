@@ -7,35 +7,41 @@
     <main>
         <% if(products.length>0){ %>
 
-            
+
           <div class="grid">
-            <% for(let cart of products){ const  product = cart.productData %>
+            <% for(let product of products){  %>
                 <article class="card product-item">
                     <header class="card__header">
-                      <h1 class="product__title">📖<%= product.title %> * <%= cart.qty%></h1>
+                      <h1 class="product__title">📖<%= product.title %> * <%= product.cartItem.qty %></h1>
                     </header>
                     <div class="cart__image">
-                        <img src="<%= product.imageUrl || '/image/book.jpeg'  %>">  
+                        <img src="<%= product.imageUrl || '/image/book.jpeg'  %>">
                     </div>
                     <div class="card_content">
-                      <h2 class="product__price">$ <%= product.price * cart.qty %> </h2>
+                      <h2 class="product__price">$ <%= product.price * product.cartItem.qty %> </h2>
                       <p class="product__description"> <%= product.description %> </p>
                     </div>
                     <form action="/cart-delete-item" method="POST">
                         <input type="hidden" name="id" value="<%= product.id %>" />
                         <button type="submit">Delete</button>
                     </form>
-                 </article>
+                  </article>
+
              <% } %>
           </div>
- 
+    </main>
+     <br>
+             <div class="center">
+                 <form action="/create-order" method="POST">
+                      <button type="submit" class="btn"> Order</button>
+                </form>
+             </div>
 
         <%}else{%>
             <h1> No results cart...</h1>
         <%}%>
 
 
-    </main>
 
     <%- include('../includes/end.ejs') %>
 
