@@ -1,0 +1,10 @@
+<main>
+  {{#if hasProducts}}
+    {{#each prods}}
+      <h1>{{this.title}}</h1>
+      <p>List of all the prodects...</p>
+    {{/each}}
+  {{else}}
+    Not ready yet!
+  {{/if}}
+</main>
