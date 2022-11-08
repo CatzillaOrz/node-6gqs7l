@@ -1,7 +1,6 @@
 // run `node index.js` in the terminal
 const path = require("path");
 const rootDir = require("./util/path");
-
 const express = require("express");
 const bodyParser = require("express");
 
@@ -14,7 +13,7 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(rootDir, "public")));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/admin", adminRoutes.routes);
 app.use(shopRouter);
 
