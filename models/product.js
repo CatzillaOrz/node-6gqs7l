@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const Sechema = mongoose.Sechema;
+const Schema = mongoose.Schema;
 
-const productSchema = new Sechema({
+const productSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -20,6 +20,7 @@ const productSchema = new Sechema({
   },
 });
 
+module.exports = mongoose.model("Product", productSchema);
 /**
  * const mongodb = require("mongodb");
 const getDb = require("../util/database").getDb;
