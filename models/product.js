@@ -1,4 +1,27 @@
-const mongodb = require("mongodb");
+const mongoose = require("mongoose");
+const Sechema = mongoose.Sechema;
+
+const productSchema = new Sechema({
+  title: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  imageUrl: {
+    type: String,
+    required: true,
+  },
+});
+
+/**
+ * const mongodb = require("mongodb");
 const getDb = require("../util/database").getDb;
 
 class Product {
@@ -64,4 +87,6 @@ class Product {
   }
 }
 
+
 module.exports = Product;
+*/
