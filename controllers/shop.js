@@ -81,18 +81,6 @@ exports.getOrders = (req, res, next) => {
 
 exports.getDetail = (req, res, next) => {
   const pId = req.params.id;
-  /*
-            Product.findAll({ where: { id: pId } })
-        .then(([product]) => {
-            res.render('shop/product-detail', {
-                product: product,
-                path: '/products',
-                pageTitle: 'Detail',
-            });
-        })
-        .catch((err) => console.log(err));
-
- */
   Product.findById(pId)
     .then((product) => {
       res.render("shop/product-detail", {

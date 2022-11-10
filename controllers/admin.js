@@ -53,7 +53,7 @@ exports.postEditProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
   const pId = req.body.id;
-  Product.deleteById(pId)
+  Product.findOneAndRemove(pId)
     .then((_) => {
       res.redirect("/admin/products");
     })
@@ -63,13 +63,16 @@ exports.deleteProduct = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  Product.find().then((products) => {
-    res.render("admin/products", {
-      prods: products,
-      path: "/admin/products",
-      pageTitle: "Products",
+  Product.find()
+    //.select('title price -_id')
+    //.populate("userId")
+    .then((products) => {
+      res.render("admin/products", {
+        prods: products,
+        path: "/admin/products",
+        pageTitle: "Products",
+      });
     });
-  });
 };
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
@@ -81,6 +84,7 @@ exports.postAddProduct = (req, res, next) => {
     price: price,
     description: description,
     imageUrl: imageUrl,
+    userId: req.user,
   });
   product
     .save()
