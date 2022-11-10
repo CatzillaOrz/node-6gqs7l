@@ -11,16 +11,16 @@
             <% orders.forEach( order => { %>
 
           <div class="grid">
-            <% order.items.forEach( product => {%>
+            <% order.products.forEach( productItem => { let {product} = productItem%>
                 <article class="card product-item">
                     <header class="card__header">
-                      <h1 class="product__title">📖<%= product.title %> * <%= product.quantity %></h1>
+                      <h1 class="product__title">📖<%= product.title %> * <%= productItem.quantity %></h1>
                     </header>
                     <div class="cart__image">
                         <img src="<%= product.imageUrl || '/image/book.jpeg'  %>">
                     </div>
                     <div class="card_content">
-                      <h2 class="product__price">$ <%= product.price * product.quantity %> </h2>
+                      <h2 class="product__price">$ <%= product.price * productItem.quantity %> </h2>
                       <p class="product__description"> <%= product.description %> </p>
                     </div>
                  </article>
