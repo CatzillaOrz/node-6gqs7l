@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const User = require("./models/user");
 const adminRoutes = require("./routes/admin");
 const shopRouter = require("./routes/shop");
+const authRouter = require("./routes/auth");
 
 const errorController = require("./controllers/error");
 
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 
 app.use("/admin", adminRoutes.routes);
 app.use(shopRouter);
+app.use(authRouter);
 
 app.use(errorController.get404);
 
