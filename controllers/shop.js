@@ -112,6 +112,7 @@ exports.getDetail = (req, res, next) => {
         product: product,
         path: "/products",
         pageTitle: "Detail",
+        isAuthenticated: req.session.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
