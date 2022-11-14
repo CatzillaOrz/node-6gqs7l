@@ -9,6 +9,7 @@ exports.getLogin = (req, res, next) => {
       isAuthenticated: false,
     });
 };
+
 exports.postLogin = (req, res, next) => {
   //res.setHeader("Set-Cookie", "loggedIn=true");
   User.findById("636bb48835192cf46ad48f26")
@@ -18,4 +19,12 @@ exports.postLogin = (req, res, next) => {
       res.redirect("/");
     })
     .catch((err) => console.log(err));
+};
+
+exports.postLogout = (req, res, next) => {
+  req.session.destroy((err) => {
+    console.log(err);
+    console.log("user logout...");
+    res.redirect("/");
+  });
 };
