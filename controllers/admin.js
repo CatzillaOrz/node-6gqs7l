@@ -15,6 +15,7 @@ exports.getEditProduct = (req, res, next) => {
       pageTitle: "Edit-Product",
       editing: editMode,
       product: product,
+      isAuthenticated: req.session.isLoggedIn,
     });
   });
 };
@@ -24,6 +25,7 @@ exports.getAddProduct = (req, res, next) => {
     path: "/admin/add-product",
     pageTitle: "AddProducts",
     editing: false,
+    isAuthenticated: req.session.isLoggedIn,
   });
 };
 
@@ -71,6 +73,7 @@ exports.getProduct = (req, res, next) => {
         prods: products,
         path: "/admin/products",
         pageTitle: "Products",
+        isAuthenticated: req.session.isLoggedIn,
       });
     });
 };
@@ -84,7 +87,7 @@ exports.postAddProduct = (req, res, next) => {
     price: price,
     description: description,
     imageUrl: imageUrl,
-    userId: req.user,
+    userId: req.session.user,
   });
   product
     .save()

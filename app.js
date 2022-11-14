@@ -4,6 +4,7 @@ const rootDir = require("./util/path");
 const express = require("express");
 const bodyParser = require("express");
 const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 const mongoose = require("mongoose");
 
@@ -11,10 +12,16 @@ const User = require("./models/user");
 const adminRoutes = require("./routes/admin");
 const shopRouter = require("./routes/shop");
 const authRouter = require("./routes/auth");
-
 const errorController = require("./controllers/error");
 
+const MONGODB_URI =
+  "mongodb+srv://catzilla:catzilla@cluster0.3wuapxa.mongodb.net/shop";
+
 const app = express();
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: "sessions",
+});
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -26,17 +33,9 @@ app.use(
     secret: "catzilla secret",
     resave: false,
     saveUninitialized: false,
+    store: store,
   })
 );
-
-app.use((req, res, next) => {
-  User.findById("636bb48835192cf46ad48f26")
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => console.log(err));
-});
 
 app.use("/admin", adminRoutes.routes);
 app.use(shopRouter);
@@ -45,9 +44,7 @@ app.use(authRouter);
 app.use(errorController.get404);
 
 mongoose
-  .connect(
-    "mongodb+srv://catzilla:catzilla@cluster0.3wuapxa.mongodb.net/shop?retryWrites=true&w=majority"
-  )
+  .connect(MONGODB_URI)
   .then((_) => {
     User.findOne().then((user) => {
       if (!user) {
