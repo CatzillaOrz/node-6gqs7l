@@ -37,6 +37,14 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  if (!req.session.user) return next();
+  User.findById(req.session.user._id).then((user) => {
+    req.user = user;
+    next();
+  });
+});
+
 app.use("/admin", adminRoutes.routes);
 app.use(shopRouter);
 app.use(authRouter);
@@ -59,6 +67,6 @@ mongoose
       }
     });
     app.listen(8080);
-    console.log("star server on 8080");
+    console.log("start server on 8080");
   })
   .catch((err) => console.log(err));

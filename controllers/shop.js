@@ -49,7 +49,7 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  req.session.user
+  req.user
     .populate("cart.items.productId")
     .then((user) => {
       const products = user.cart.items;
@@ -64,7 +64,7 @@ exports.getCart = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
-  req.session.user
+  req.user
     .populate("cart.items.productId")
     .then((user) => {
       const products = user.cart.items.map((e) => {
@@ -76,14 +76,14 @@ exports.postOrder = (req, res, next) => {
       const order = new Order({
         products: products,
         user: {
-          name: req.session.user.name,
-          userId: req.session.user,
+          name: req.user.name,
+          userId: req.user,
         },
       });
       return order.save();
     })
     .then((_) => {
-      return req.session.user.clearCart();
+      return req.user.clearCart();
     })
     .then((_) => {
       res.redirect("/orders");
@@ -92,7 +92,7 @@ exports.postOrder = (req, res, next) => {
 };
 
 exports.getOrders = (req, res, next) => {
-  Order.find({ "user.id": req.session.user._id })
+  Order.find({ "user.id": req.user._id })
     .then((orders) => {
       res.render("shop/orders", {
         pageTitle: "Shop Orders",
@@ -122,7 +122,7 @@ exports.postCart = (req, res, next) => {
   const pId = req.body.id;
   Product.findById(pId)
     .then((product) => {
-      return req.session.user.addToCart(product);
+      return req.user.addToCart(product);
     })
     .then((_) => res.redirect("/cart"))
     .catch((err) => console.log(err));
@@ -130,7 +130,7 @@ exports.postCart = (req, res, next) => {
 
 exports.deleteCartById = (req, res, next) => {
   const pId = req.body.id;
-  req.session.user
+  req.user
     .removeFromCart(pId)
     .then((_) => {
       res.redirect("/cart");

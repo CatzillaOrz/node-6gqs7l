@@ -25,6 +25,10 @@ exports.postLogout = (req, res, next) => {
   req.session.destroy((err) => {
     console.log(err);
     console.log("user logout...");
-    res.redirect("/");
+    req.session.save((err) => {
+      //be used to Redirect after mongoose
+      console.log(err);
+      res.redirect("/");
+    });
   });
 };
